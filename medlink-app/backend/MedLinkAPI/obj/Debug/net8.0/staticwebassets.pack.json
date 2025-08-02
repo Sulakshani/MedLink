@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\database-viewer.html",
+      "PackagePath": "staticwebassets\\database-viewer.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MedLinkAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MedLinkAPI.props",
+      "PackagePath": "build\\MedLinkAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MedLinkAPI.props",
+      "PackagePath": "buildMultiTargeting\\MedLinkAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MedLinkAPI.props",
+      "PackagePath": "buildTransitive\\MedLinkAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,6 @@
+@MedLinkAPI_HostAddress = http://localhost:5079
+
+GET {{MedLinkAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

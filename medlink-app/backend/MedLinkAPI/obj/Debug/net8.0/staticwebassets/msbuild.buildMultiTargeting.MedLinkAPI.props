@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MedLinkAPI.props" />
+</Project>
