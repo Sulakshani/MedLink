@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CPO+L4BLNd/uLmI4QfHVzU4MBM0o9prbPwtU5ot5twU=",
+  "Hash": "PHKLwHeSfk/yrIvtsQuX8HCbREVgyOjHtWIemtCn8o4=",
   "Source": "MedLinkAPI",
   "BasePath": "_content/MedLinkAPI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "MedLinkAPI\\wwwroot",
       "Source": "MedLinkAPI",
-      "ContentRoot": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\",
       "BasePath": "_content/MedLinkAPI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\database-viewer.html",
+      "Identity": "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\database-viewer.html",
       "SourceId": "MedLinkAPI",
       "SourceType": "Discovered",
-      "ContentRoot": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\wwwroot\\",
       "BasePath": "_content/MedLinkAPI",
       "RelativePath": "database-viewer.html",
       "AssetKind": "All",

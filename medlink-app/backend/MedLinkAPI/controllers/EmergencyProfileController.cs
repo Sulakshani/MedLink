@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using MedLinkAPI.Data;
 using MedLinkAPI.Models;
+using System.Security.Claims;
 
 namespace MedLinkAPI.Controllers;
 
@@ -19,9 +21,12 @@ public class EmergencyProfileController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Create(CreateEmergencyProfileDto dto)
     {
         _logger.LogInformation("Creating new emergency profile for: {FullName}", dto.FullName);
+        
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
         
         var profile = new EmergencyProfile
         {
@@ -29,9 +34,13 @@ public class EmergencyProfileController : ControllerBase
             BloodType = dto.BloodType,
             Allergies = dto.Allergies,
             MedicalConditions = dto.MedicalConditions,
+            Medications = dto.Medications,
             EmergencyContactName = dto.EmergencyContactName,
             EmergencyContactPhone = dto.EmergencyContactPhone,
-            PublicId = Guid.NewGuid().ToString().Substring(0, 8)
+            PhysicianName = dto.PhysicianName,
+            PhysicianPhone = dto.PhysicianPhone,
+            PublicId = Guid.NewGuid().ToString().Substring(0, 8),
+            CreatedBy = userId
         };
         
         _context.EmergencyProfiles.Add(profile);
@@ -44,6 +53,7 @@ public class EmergencyProfileController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Roles = "Doctor,Admin")]
     public async Task<IActionResult> GetAll()
     {
         _logger.LogInformation("Getting all emergency profiles");
@@ -59,8 +69,38 @@ public class EmergencyProfileController : ControllerBase
             p.BloodType,
             p.Allergies,
             p.MedicalConditions,
+            p.Medications,
             p.EmergencyContactName,
-            p.EmergencyContactPhone
+            p.EmergencyContactPhone,
+            p.PhysicianName,
+            p.PhysicianPhone
+        }));
+    }
+
+    [HttpGet("my-profiles")]
+    [Authorize]
+    public async Task<IActionResult> GetMyProfiles()
+    {
+        var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+        _logger.LogInformation("Getting profiles for user: {UserId}", userId);
+        
+        var profiles = await _context.EmergencyProfiles
+            .Where(p => p.CreatedBy == userId)
+            .ToListAsync();
+        
+        return Ok(profiles.Select(p => new
+        {
+            p.Id,
+            p.PublicId,
+            p.FullName,
+            p.BloodType,
+            p.Allergies,
+            p.MedicalConditions,
+            p.Medications,
+            p.EmergencyContactName,
+            p.EmergencyContactPhone,
+            p.PhysicianName,
+            p.PhysicianPhone
         }));
     }
 
