@@ -169,3 +169,6 @@ C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\bin\Debug\net8
 C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\bin\Debug\net8.0\MedLinkAPI.staticwebassets.runtime.json
+C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\obj\Debug\net8.0\MedLinkAPI.sourcelink.json
+C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Acer\Desktop\myNewProject\medlink-app\backend\MedLinkAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

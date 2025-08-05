@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using MedLinkAPI.Data;
+using MedLinkAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,19 +12,39 @@ var builder = WebApplication.CreateBuilder(args);
 // For production, switch to UseSqlServer with proper connection string
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    if (builder.Environment.IsDevelopment())
-    {
-        // Use InMemory database for development/testing
-        options.UseInMemoryDatabase("MedLinkDB");
-    }
-    else
-    {
-        // Use SQL Server for production
-        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-    }
+    // Always use InMemory database for now
+    options.UseInMemoryDatabase("MedLinkDB");
 });
 
 builder.Services.AddControllers();
+
+// Add JWT Authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"] ?? "MedLinkAPI",
+        ValidAudience = builder.Configuration["JwtSettings:Audience"] ?? "MedLinkApp",
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+            builder.Configuration["JwtSettings:SecretKey"] ?? "YourSuperSecretKeyThatShouldBeAtLeast32CharactersLongForSecurity")),
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+builder.Services.AddAuthorization();
+
+// Register JWT Service
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 // Add CORS
 builder.Services.AddCors(options =>
@@ -56,6 +80,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseCors("AllowAll");
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

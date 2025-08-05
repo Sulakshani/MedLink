@@ -1,17 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
 import QRCode from 'qrcode';
+import { useAuth } from '../../contexts/AuthContext';
+import ProtectedRoute from '../../components/ProtectedRoute';
+import api from '../../lib/auth';
 
 interface ProfileData {
   fullName: string;
   bloodType: string;
   allergies: string;
   medicalConditions: string;
+  medications?: string;
   emergencyContactName: string;
   emergencyContactPhone: string;
+  physicianName?: string;
+  physicianPhone?: string;
 }
 
 interface ApiResponse {
@@ -71,7 +76,7 @@ export default function CreateProfile() {
     setError('');
     
     try {
-      const res = await axios.post('http://localhost:5079/api/EmergencyProfile', profile);
+      const res = await api.post('/emergencyprofile', profile);
       setResponse(res.data);
     } catch (err) {
       setError('Failed to create profile. Please try again.');

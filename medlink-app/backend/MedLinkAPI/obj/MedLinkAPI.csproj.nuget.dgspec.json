@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj": {}
+    "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj": {
+    "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj",
         "projectName": "MedLinkAPI",
-        "projectPath": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj",
+        "projectPath": "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\MedLinkAPI.csproj",
         "packagesPath": "C:\\Users\\Acer\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\obj\\",
+        "outputPath": "C:\\Users\\Acer\\Desktop\\myNewProject\\medlink-app\\backend\\MedLinkAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Acer\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.18, )"
