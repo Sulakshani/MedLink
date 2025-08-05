@@ -2,15 +2,24 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const [qrCode, setQrCode] = useState('');
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   const handleQrSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (qrCode.trim()) {
       window.location.href = `/view/${qrCode.trim()}`;
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
   };
 
   return (
@@ -23,7 +32,7 @@ export default function Home() {
               <h1 className="text-3xl font-bold text-gray-900">🏥 MedLink</h1>
               <span className="ml-2 text-sm text-gray-500">Emergency Medical Information</span>
             </div>
-            <nav className="flex space-x-8">
+            <nav className="flex space-x-8 items-center">
               <Link href="/create" className="text-gray-700 hover:text-blue-600 transition-colors">
                 Create Profile
               </Link>
@@ -36,6 +45,32 @@ export default function Home() {
               <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors">
                 Contact
               </Link>
+              
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <Link href="/profile" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    Profile ({user.firstName})
+                  </Link>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                    {user.role}
+                  </span>
+                  <button
+                    onClick={handleLogout}
+                    className="text-red-600 hover:text-red-700 transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-4">
+                  <Link href="/login" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    Login
+                  </Link>
+                  <Link href="/register" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                    Sign Up
+                  </Link>
+                </div>
+              )}
             </nav>
           </div>
         </div>
